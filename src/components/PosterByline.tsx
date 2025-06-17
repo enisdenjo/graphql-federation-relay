@@ -8,7 +8,12 @@ const { useRef } = React;
 
 const PosterBylineFragment = graphql`
   fragment PosterBylineFragment on Actor {
-    id
+    ... on Person {
+      nodeId # TODO: add interface support (interface Actor implements Node)
+    }
+    ... on Organization {
+      nodeId # TODO: add interface support (interface Actor implements Node)
+    }
     name
     profilePicture {
       ...ImageFragment @arguments(width: 60, height: 60)
@@ -28,7 +33,7 @@ export default function PosterByline({ poster }: Props): React.ReactElement {
       <Image image={data.profilePicture} className="byline__image" />
       <div className="byline__name">{data.name}</div>
       <Hovercard targetRef={hoverRef}>
-        <PosterDetailsHovercardContents posterID={data.id} />
+        <PosterDetailsHovercardContents posterNodeId={data.nodeId} />
       </Hovercard>
     </div>
   );

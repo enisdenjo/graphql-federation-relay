@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<46cd5d5228cc6c5aa0a5cf09591dc2cd>>
+ * @generated SignedSource<<a4dfe04ae53d4728f860c091d8a4f928>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PosterDetailsHovercardContentsQuery$variables = {
-  posterID: string;
+  posterNodeId: string;
 };
 export type PosterDetailsHovercardContentsQuery$data = {
   readonly node: {
@@ -28,14 +28,14 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "posterID"
+    "name": "posterNodeId"
   }
 ],
 v1 = [
   {
     "kind": "Variable",
-    "name": "id",
-    "variableName": "posterID"
+    "name": "nodeId",
+    "variableName": "posterNodeId"
   }
 ];
 return {
@@ -94,15 +94,15 @@ return {
             "storageKey": null
           },
           {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          },
-          {
             "kind": "InlineFragment",
             "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
               {
                 "alias": null,
                 "args": null,
@@ -145,6 +145,13 @@ return {
             ],
             "type": "Actor",
             "abstractKey": "__isActor"
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "nodeId",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -152,16 +159,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e93a3419acec635afe228f52f9a9c99d",
+    "cacheID": "73ebf5f7d9796cc599d33705af58c2ee",
     "id": null,
     "metadata": {},
     "name": "PosterDetailsHovercardContentsQuery",
     "operationKind": "query",
-    "text": "query PosterDetailsHovercardContentsQuery(\n  $posterID: ID!\n) {\n  node(id: $posterID) {\n    __typename\n    ... on Actor {\n      __isActor: __typename\n      ...PosterDetailsHovercardContentsBodyFragment\n    }\n    id\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment PosterDetailsHovercardContentsBodyFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  joined\n  profilePicture {\n    ...ImageFragment\n  }\n}\n"
+    "text": "query PosterDetailsHovercardContentsQuery(\n  $posterNodeId: ID!\n) {\n  node(nodeId: $posterNodeId) {\n    __typename\n    ... on Actor {\n      __isActor: __typename\n      ...PosterDetailsHovercardContentsBodyFragment\n    }\n    nodeId\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment PosterDetailsHovercardContentsBodyFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  joined\n  profilePicture {\n    ...ImageFragment\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "da5053ee7f05480a44e9aca3d552aa6d";
+(node as any).hash = "1c1c5528a386e4919c33cbd47053a45b";
 
 export default node;

@@ -76,16 +76,15 @@ schema
 
 enum join__Graph {
   BUSINESS_SERVICE @join__graph(name: "business-service", url: "http://localhost:8081/graphql") 
-  NODE_RESOLVER_SERVICE @join__graph(name: "node-resolver-service", url: "http://localhost:8082/graphql") 
 }
 
-type Person implements Actor & Node @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__type(graph: NODE_RESOLVER_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Actor")  @join__implements(graph: BUSINESS_SERVICE, interface: "Node")  @join__implements(graph: NODE_RESOLVER_SERVICE, interface: "Node")  {
+type Person implements Actor @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Actor")  {
   id: ID!
-  name: String @join__field(graph: BUSINESS_SERVICE) 
-  email: String @join__field(graph: BUSINESS_SERVICE) 
-  profilePicture: Image @join__field(graph: BUSINESS_SERVICE) 
-  joined: String @join__field(graph: BUSINESS_SERVICE) 
-  location: Location @join__field(graph: BUSINESS_SERVICE) 
+  name: String
+  email: String
+  profilePicture: Image
+  joined: String
+  location: Location
 }
 
 type Image @join__type(graph: BUSINESS_SERVICE)  {
@@ -98,27 +97,27 @@ type Location @join__type(graph: BUSINESS_SERVICE)  {
   name: String!
 }
 
-type Organization implements Actor & Node @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__type(graph: NODE_RESOLVER_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Actor")  @join__implements(graph: BUSINESS_SERVICE, interface: "Node")  @join__implements(graph: NODE_RESOLVER_SERVICE, interface: "Node")  {
+type Organization implements Actor @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Actor")  {
   id: ID!
-  name: String @join__field(graph: BUSINESS_SERVICE) 
-  profilePicture: Image @join__field(graph: BUSINESS_SERVICE) 
-  joined: String @join__field(graph: BUSINESS_SERVICE) 
-  organizationKind: OrganizationKind @join__field(graph: BUSINESS_SERVICE) 
+  name: String
+  profilePicture: Image
+  joined: String
+  organizationKind: OrganizationKind
 }
 
-type Story implements Node @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__type(graph: NODE_RESOLVER_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Node")  @join__implements(graph: NODE_RESOLVER_SERVICE, interface: "Node")  {
+type Story @join__type(graph: BUSINESS_SERVICE, key: "id")  {
   id: ID!
-  createdAt: String! @join__field(graph: BUSINESS_SERVICE) 
-  category: Category @join__field(graph: BUSINESS_SERVICE) 
-  title: String! @join__field(graph: BUSINESS_SERVICE) 
-  summary: String @join__field(graph: BUSINESS_SERVICE) 
-  updatedAt: String @join__field(graph: BUSINESS_SERVICE) 
-  attachments: [Image] @join__field(graph: BUSINESS_SERVICE) 
-  poster: Actor! @join__field(graph: BUSINESS_SERVICE) 
-  thumbnail: Image @join__field(graph: BUSINESS_SERVICE) 
-  likeCount: Int @join__field(graph: BUSINESS_SERVICE) 
-  doesViewerLike: Boolean @join__field(graph: BUSINESS_SERVICE) 
-  comments(first: Int, after: String) : CommentsConnection @join__field(graph: BUSINESS_SERVICE) 
+  createdAt: String!
+  category: Category
+  title: String!
+  summary: String
+  updatedAt: String
+  attachments: [Image]
+  poster: Actor!
+  thumbnail: Image
+  likeCount: Int
+  doesViewerLike: Boolean
+  comments(first: Int, after: String) : CommentsConnection
 }
 
 type CommentsConnection @join__type(graph: BUSINESS_SERVICE)  {
@@ -144,12 +143,10 @@ type PageInfo @join__type(graph: BUSINESS_SERVICE)  {
   hasPreviousPage: Boolean
 }
 
-type Query @join__type(graph: BUSINESS_SERVICE)  @join__type(graph: NODE_RESOLVER_SERVICE)  {
-  viewer: Viewer @join__field(graph: BUSINESS_SERVICE) 
-  topStory(category: Category) : Story @join__field(graph: BUSINESS_SERVICE) 
-  topStories: [Story] @join__field(graph: BUSINESS_SERVICE) 
-  node(id: ID!) : Node @join__field(graph: NODE_RESOLVER_SERVICE) 
-  nodes(ids: [ID!]!) : [Node]! @join__field(graph: NODE_RESOLVER_SERVICE) 
+type Query @join__type(graph: BUSINESS_SERVICE)  {
+  viewer: Viewer
+  topStory(category: Category) : Story
+  topStories: [Story]
 }
 
 type Viewer @join__type(graph: BUSINESS_SERVICE)  {
@@ -187,10 +184,6 @@ interface Actor @join__type(graph: BUSINESS_SERVICE)  {
   name: String
   profilePicture: Image
   joined: String
-}
-
-interface Node @join__type(graph: BUSINESS_SERVICE)  @join__type(graph: NODE_RESOLVER_SERVICE)  {
-  id: ID!
 }
 
 enum OrganizationKind @join__type(graph: BUSINESS_SERVICE)  {

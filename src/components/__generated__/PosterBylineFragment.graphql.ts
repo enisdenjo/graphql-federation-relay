@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c1b4226ce465ed92dff46545d290e952>>
+ * @generated SignedSource<<4b21866f6f3efd6e1a4ea8a7fc3d6cb5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,8 +11,8 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PosterBylineFragment$data = {
-  readonly id: string;
   readonly name: string | null;
+  readonly nodeId?: string;
   readonly profilePicture: {
     readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
   } | null;
@@ -23,18 +23,33 @@ export type PosterBylineFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"PosterBylineFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "nodeId",
+    "storageKey": null
+  }
+];
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "PosterBylineFragment",
   "selections": [
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
+      "kind": "InlineFragment",
+      "selections": (v0/*: any*/),
+      "type": "Person",
+      "abstractKey": null
+    },
+    {
+      "kind": "InlineFragment",
+      "selections": (v0/*: any*/),
+      "type": "Organization",
+      "abstractKey": null
     },
     {
       "alias": null,
@@ -74,7 +89,8 @@ const node: ReaderFragment = {
   "type": "Actor",
   "abstractKey": "__isActor"
 };
+})();
 
-(node as any).hash = "0963a03bc2657c383dd019ca7e14fe61";
+(node as any).hash = "3885158eef33be3ba9773b96e616329c";
 
 export default node;

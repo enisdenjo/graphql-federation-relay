@@ -8,8 +8,8 @@ import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__gener
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
 
 const PosterDetailsHovercardContentsQuery = graphql`
-  query PosterDetailsHovercardContentsQuery($posterID: ID!) {
-    node(id: $posterID) {
+  query PosterDetailsHovercardContentsQuery($posterNodeId: ID!) {
+    node(nodeId: $posterNodeId) {
       ... on Actor {
         ...PosterDetailsHovercardContentsBodyFragment
       }
@@ -18,13 +18,13 @@ const PosterDetailsHovercardContentsQuery = graphql`
 `;
 
 export default function PosterDetailsHovercardContents({
-  posterID,
+  posterNodeId,
 }: {
-  posterID: string;
+  posterNodeId: string;
 }): React.ReactElement {
   const data = useLazyLoadQuery<QueryType>(
     PosterDetailsHovercardContentsQuery,
-    { posterID }
+    { posterNodeId }
   );
   return <PosterDetailsHovercardContentsBody poster={data.node} />;
 }

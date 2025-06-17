@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f8e9d1ba27a1c5f12baaffd032c0304b>>
+ * @generated SignedSource<<4d4cede359d9d560408f1fbeeeba7f4e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,11 +44,18 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
+  "kind": "InlineFragment",
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "nodeId",
+      "storageKey": null
+    }
+  ],
+  "type": "Node",
+  "abstractKey": "__isNode"
 };
 return {
   "fragment": {
@@ -131,7 +138,13 @@ return {
             "plural": true,
             "selections": [
               (v0/*: any*/),
-              (v3/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
               {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
@@ -155,7 +168,8 @@ return {
                   }
                 ],
                 "storageKey": null
-              }
+              },
+              (v3/*: any*/)
             ],
             "storageKey": null
           }
@@ -165,12 +179,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cfd00933be468af9c9215168c101c6f9",
+    "cacheID": "d68c19d6b24e8ad9ad75d2fe3c39eb61",
     "id": null,
     "metadata": {},
     "name": "SidebarQuery",
     "operationKind": "query",
-    "text": "query SidebarQuery {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    id\n  }\n}\n"
+    "text": "query SidebarQuery {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n    ... on Node {\n      __isNode: __typename\n      nodeId\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    ... on Node {\n      __isNode: __typename\n      nodeId\n    }\n  }\n}\n"
   }
 };
 })();

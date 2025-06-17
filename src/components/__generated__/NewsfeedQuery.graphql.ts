@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<35a3bf9bd05f27f6b1071fe4557e9eaf>>
+ * @generated SignedSource<<064b22966434595de5146154ae08cecb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -31,6 +31,16 @@ var v0 = {
   "storageKey": null
 },
 v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "nodeId",
+  "storageKey": null
+},
+v2 = [
+  (v1/*: any*/)
+],
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -120,7 +130,18 @@ return {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
               },
-              (v0/*: any*/),
+              {
+                "kind": "InlineFragment",
+                "selections": (v2/*: any*/),
+                "type": "Person",
+                "abstractKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "selections": (v2/*: any*/),
+                "type": "Organization",
+                "abstractKey": null
+              },
               {
                 "alias": null,
                 "args": null,
@@ -154,9 +175,15 @@ return {
                     "name": "url",
                     "storageKey": "url(height:60,width:60)"
                   },
-                  (v1/*: any*/)
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "selections": (v2/*: any*/),
+                "type": "Node",
+                "abstractKey": "__isNode"
               }
             ],
             "storageKey": null
@@ -182,7 +209,7 @@ return {
                 "name": "url",
                 "storageKey": "url(width:400)"
               },
-              (v1/*: any*/)
+              (v3/*: any*/)
             ],
             "storageKey": null
           },
@@ -264,19 +291,20 @@ return {
               }
             ],
             "storageKey": "comments(first:1)"
-          }
+          },
+          (v1/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "d9149e591edfd758375b0c92925b98b2",
+    "cacheID": "5060912040b00d8d15a8433f6ef9da78",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStories {\n    id\n    ...StoryFragment\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment_3XLoCc on Image {\n  url(width: 60, height: 60)\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment_3XLoCc\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 1) {\n    pageInfo {\n      startCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n      }\n    }\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryLikeButtonFragment\n  ...StoryCommentsSectionFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n"
+    "text": "query NewsfeedQuery {\n  topStories {\n    id\n    ...StoryFragment\n    nodeId\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment_3XLoCc on Image {\n  url(width: 60, height: 60)\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  ... on Person {\n    nodeId\n  }\n  ... on Organization {\n    nodeId\n  }\n  name\n  profilePicture {\n    ...ImageFragment_3XLoCc\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 1) {\n    pageInfo {\n      startCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n      }\n    }\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    ... on Node {\n      __isNode: __typename\n      nodeId\n    }\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryLikeButtonFragment\n  ...StoryCommentsSectionFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n"
   }
 };
 })();

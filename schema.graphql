@@ -1,0 +1,150 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  viewer: Viewer
+  topStory(category: Category): Story
+  topStories: [Story]
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+}
+
+type Mutation {
+  likeStory(id: ID!, doesLike: Boolean!): StoryMutationResponse
+  postStoryComment(id: ID!, text: String!): StoryCommentMutationResponse
+}
+
+type Person implements Actor & Node {
+  id: ID!
+  name: String
+  email: String
+  profilePicture: Image
+  joined: String
+  location: Location
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+type Image {
+  url(height: Int, width: Int): String!
+  altText: String
+}
+
+type Location {
+  id: ID!
+  name: String!
+}
+
+type Organization implements Actor & Node {
+  id: ID!
+  name: String
+  profilePicture: Image
+  joined: String
+  organizationKind: OrganizationKind
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+type Story implements Node {
+  id: ID!
+  createdAt: String!
+  category: Category
+  title: String!
+  summary: String
+  updatedAt: String
+  attachments: [Image]
+  poster: Actor!
+  thumbnail: Image
+  likeCount: Int
+  doesViewerLike: Boolean
+  comments(first: Int, after: String): CommentsConnection
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+type CommentsConnection {
+  edges: [CommentsConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type CommentsConnectionEdge {
+  node: Comment
+  cursor: String
+}
+
+type Comment {
+  id: ID!
+  text: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  lastCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type Viewer {
+  actor: Actor
+  contacts(search: String): [Actor]
+  newsfeedStories(first: Int, after: String, category: Category): StoriesConnection
+}
+
+type StoriesConnection {
+  edges: [StoriesConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type StoriesConnectionEdge {
+  node: Story
+  cursor: String
+}
+
+type StoryMutationResponse {
+  story: Story
+}
+
+type StoryCommentMutationResponse {
+  story: Story
+  commentEdge: CommentsConnectionEdge
+}
+
+interface Actor {
+  id: ID!
+  name: String
+  profilePicture: Image
+  joined: String
+}
+
+enum OrganizationKind {
+  COMMERCIAL
+  NONPROFIT
+  GOVERNMENT
+  JOURNALISTIC
+}
+
+enum Category {
+  ALL
+  EDUCATION
+  NEWS
+  COOKING
+}
+
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}

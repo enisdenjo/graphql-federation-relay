@@ -1,5 +1,9 @@
 {
   "src": "./src",
-  "schema": "./supergraph.graphql",
-  "language": "typescript"
+  "schema": "./schema.graphql",
+  "language": "typescript",
+  "schemaConfig": {
+    "nodeInterfaceIdField": "nodeId",
+    "nodeInterfaceIdVariableName": "nodeId"
+  }
 }

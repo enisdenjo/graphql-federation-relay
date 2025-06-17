@@ -2,7 +2,7 @@ scalar _FieldSet
 
 directive @key(fields: _FieldSet!) repeatable on OBJECT | INTERFACE
 
-type Person implements Actor & Node @key(fields: "id") {
+type Person implements Actor @key(fields: "id") {
   id: ID!
   name: String
   email: String
@@ -11,11 +11,7 @@ type Person implements Actor & Node @key(fields: "id") {
   location: Location
 }
 
-interface Node {
-  id: ID!
-}
-
-interface Actor {
+interface Actor @key(fields: "id") {
   id: ID!
   name: String
   profilePicture: Image
@@ -32,7 +28,7 @@ type Location {
   name: String!
 }
 
-type Organization implements Actor & Node @key(fields: "id") {
+type Organization implements Actor @key(fields: "id") {
   id: ID!
   name: String
   profilePicture: Image
@@ -47,7 +43,7 @@ enum OrganizationKind {
   JOURNALISTIC
 }
 
-type Story implements Node @key(fields: "id") {
+type Story @key(fields: "id") {
   createdAt: String!
   id: ID!
   category: Category
