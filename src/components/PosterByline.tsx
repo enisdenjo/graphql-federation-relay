@@ -8,12 +8,7 @@ const { useRef } = React;
 
 const PosterBylineFragment = graphql`
   fragment PosterBylineFragment on Actor {
-    ... on Person {
-      nodeId # TODO: add interface support (interface Actor implements Node)
-    }
-    ... on Organization {
-      nodeId # TODO: add interface support (interface Actor implements Node)
-    }
+    nodeId
     name
     profilePicture {
       ...ImageFragment @arguments(width: 60, height: 60)

@@ -121,11 +121,15 @@ type StoryCommentMutationResponse {
   commentEdge: CommentsConnectionEdge
 }
 
-interface Actor {
+interface Actor implements Node {
   id: ID!
   name: String
   profilePicture: Image
   joined: String
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
 }
 
 enum OrganizationKind {

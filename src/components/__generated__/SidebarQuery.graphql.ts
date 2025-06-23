@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d4cede359d9d560408f1fbeeeba7f4e>>
+ * @generated SignedSource<<5a6d306769f3e7def0140bf95e24ae4f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,18 +44,11 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "kind": "InlineFragment",
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "nodeId",
-      "storageKey": null
-    }
-  ],
-  "type": "Node",
-  "abstractKey": "__isNode"
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "nodeId",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -179,12 +172,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d68c19d6b24e8ad9ad75d2fe3c39eb61",
+    "cacheID": "1212c0fb785dd1541f12952a2440ca17",
     "id": null,
     "metadata": {},
     "name": "SidebarQuery",
     "operationKind": "query",
-    "text": "query SidebarQuery {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n    ... on Node {\n      __isNode: __typename\n      nodeId\n    }\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    ... on Node {\n      __isNode: __typename\n      nodeId\n    }\n  }\n}\n"
+    "text": "query SidebarQuery {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n    nodeId\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    nodeId\n  }\n}\n"
   }
 };
 })();
