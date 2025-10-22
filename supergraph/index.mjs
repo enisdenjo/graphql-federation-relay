@@ -16,7 +16,7 @@ const SERVICES = [
   {
     name: "node-resolver-service",
     schemaPath: "./services/node/schema.graphql",
-    port: "",
+    port: "0",
   },
 ];
 
@@ -24,7 +24,7 @@ const SERVICES = [
 const serviceConfigs = SERVICES.map(({ name, schemaPath, port }) => ({
   name,
   typeDefs: parse(readFileSync(schemaPath, "utf-8")),
-  url: port ? `http://localhost:${port}/graphql` : "local",
+  url: `http://localhost:${port}/graphql`,
 }));
 
 const result = composeServices(serviceConfigs);
