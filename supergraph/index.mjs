@@ -5,7 +5,6 @@ import {
 } from "@theguild/federation-composition";
 import { readFileSync, writeFileSync } from "fs";
 import { BUSINESS_SERVICE_PORT } from "../services/business/config.mjs";
-import { NODE_RESOLVER_PORT } from "../services/node/config.mjs";
 
 // Configuration for each service
 const SERVICES = [
@@ -17,7 +16,7 @@ const SERVICES = [
   {
     name: "node-resolver-service",
     schemaPath: "./services/node/schema.graphql",
-    port: NODE_RESOLVER_PORT,
+    port: "",
   },
 ];
 

@@ -33,7 +33,6 @@ This will concurrently start all necessary services:
 - 👉 **Frontend: [http://localhost:3000](http://localhost:3000)**
 - GraphQL Hive Gateway: [http://localhost:4000](http://localhost:4000)
 - Business Service: [http://localhost:8081](http://localhost:8081)
-- Node Resolver Service: [http://localhost:8082](http://localhost:8082)
 - Image Processing Service: [http://localhost:3003](http://localhost:3003)
 
 ## Available Development Commands
@@ -44,7 +43,6 @@ This will concurrently start all necessary services:
 - `npm run watch-hive-gateway` - Runs the federation gateway
 - `npm run watch-supergraph` - Watches and rebuilds the supergraph schema
 - `npm run watch-business` - Runs the business service with hot reload
-- `npm run watch-node` - Runs the node resolver service with hot reload
 - `npm run watch-image-server` - Runs the image processing service
 - `npm run relay` - One-time generation of Relay artifacts
 - `npm run build` - Build the application

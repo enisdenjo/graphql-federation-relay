@@ -2,7 +2,7 @@ import { defineConfig, type GatewayPlugin } from "@graphql-hive/gateway";
 import { executorFromSchema } from "@graphql-tools/executor";
 
 // @ts-expect-error no typedefs
-import { schema } from "./services/node/schema.mjs";
+import { schema } from "./services/node/index.mjs";
 
 export const gatewayConfig = defineConfig({
   supergraph: "./supergraph.graphql",
