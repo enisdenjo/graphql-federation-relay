@@ -76,7 +76,7 @@ schema
 
 enum join__Graph {
   BUSINESS_SERVICE @join__graph(name: "business-service", url: "http://localhost:8081/graphql") 
-  NODE_RESOLVER_SERVICE @join__graph(name: "node-resolver-service", url: "http://localhost:/graphql") 
+  NODE_RESOLVER_SERVICE @join__graph(name: "node-resolver-service", url: "http://localhost:0/graphql") 
 }
 
 type Person implements Actor & Node @join__type(graph: BUSINESS_SERVICE, key: "id")  @join__type(graph: NODE_RESOLVER_SERVICE, key: "id")  @join__implements(graph: BUSINESS_SERVICE, interface: "Actor")  @join__implements(graph: BUSINESS_SERVICE, interface: "Node")  @join__implements(graph: NODE_RESOLVER_SERVICE, interface: "Node")  {

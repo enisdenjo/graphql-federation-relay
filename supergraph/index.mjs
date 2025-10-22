@@ -16,7 +16,7 @@ const SERVICES = [
   {
     name: "node-resolver-service",
     schemaPath: "./services/node/schema.graphql",
-    port: "",
+    port: "0",
   },
 ];
 
