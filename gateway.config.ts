@@ -11,8 +11,8 @@ export const gatewayConfig = defineConfig({
     return [
       {
         onSubgraphExecute({ setExecutor, subgraphName }) {
-          if (subgraphName !== "node-resolver-service") return;
           if (nodeExecSet) return; // set executor will be reused, needs to run only once
+          if (subgraphName !== "node-resolver-service") return;
           nodeExecSet = true;
           setExecutor(executorFromSchema(schema));
         },
